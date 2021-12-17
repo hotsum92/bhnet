@@ -34,6 +34,14 @@ def usage():
 
 def client_sender(buffer):
 
+    # if you not send any data, input just Enter without any data.
+    buffer = ''
+    while True:
+       line = sys.stdin.readline()
+       if line == '\n':
+           break
+       buffer+=line
+
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     client.connect((target, port))
@@ -183,15 +191,6 @@ def main():
             assert False, 'Unhandled Option'
 
     if not listen and len(target) and port > 0:
-
-        # if you not send any data, input just Enter without any data.
-        buffer = ''
-        while True:
-           line = sys.stdin.readline()
-           if line == '\n':
-               break
-           buffer+=line
-
         client_sender(buffer)
 
     if listen:
