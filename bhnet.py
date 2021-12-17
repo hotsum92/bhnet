@@ -32,7 +32,7 @@ def usage():
     print('echo "ABCDEFGHI" | ./bnet.py -t 192.168.1.12 -p 135')
     sys.exit(0)
 
-def client_sender(buffer):
+def client_sender():
 
     print('started client sender')
 
@@ -48,7 +48,7 @@ def client_sender(buffer):
     client.connect((target, port))
 
     if len(buffer):
-        client.send(buffer)
+        client.send(buffer.encode('utf-8'))
 
     print('sent the input')
 
@@ -193,7 +193,7 @@ def main():
             assert False, 'Unhandled Option'
 
     if not listen and len(target) and port > 0:
-        client_sender(buffer)
+        client_sender()
 
     if listen:
         server_loop()
