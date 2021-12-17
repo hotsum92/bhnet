@@ -173,7 +173,7 @@ def main():
             execute = a
         elif o in ('-c', '--commandshell'):
             command = True
-        elif o in ('-u', '--target'):
+        elif o in ('-u', '--upload'):
             upload_destination = a
         elif o in ('-t', '--target'):
             target = a
