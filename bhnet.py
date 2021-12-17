@@ -184,6 +184,7 @@ def main():
 
     if not listen and len(target) and port > 0:
 
+        # if you not send any data, input just Enter without any data.
         buffer = ''
         while True:
            line = sys.stdin.readline()
