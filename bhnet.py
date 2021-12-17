@@ -34,6 +34,8 @@ def usage():
 
 def client_sender(buffer):
 
+    print('started client sender')
+
     # if you not send any data, input just Enter without any data.
     buffer = ''
     while True:
@@ -43,13 +45,12 @@ def client_sender(buffer):
        buffer+=line
 
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
     client.connect((target, port))
 
     if len(buffer):
         client.send(buffer)
 
-    print('sent buffer')
+    print('sent the input')
 
     while True:
         recv_len = 1
@@ -57,20 +58,21 @@ def client_sender(buffer):
 
         while recv_len:
             data = client.recv(4096)
-            print('recv data')
             recv_len = len(data)
+            print('recieved %d length' % recv_len)
             response+= data
 
             if recv_len < 4096:
                  break
 
-
+        print('recieved the total of %d data' % len(response))
         print(response)
 
         buffer = input('').encode('utf-8')
         buffer+= b'\n'
 
         client.send(buffer)
+        print('sent the input')
 
 def server_loop():
     global target
