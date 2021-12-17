@@ -72,7 +72,7 @@ def client_sender():
                  break
 
         print('recieved the total of %d data' % len(response))
-        print(byte_to_str(response))
+        print(byte_to_str(response), end='')
 
         buffer = input('')
         buffer+= '\n'
