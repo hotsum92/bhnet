@@ -32,6 +32,12 @@ def usage():
     print('echo "ABCDEFGHI" | ./bnet.py -t 192.168.1.12 -p 135')
     sys.exit(0)
 
+def str_to_byte(value):
+    return value.encode('utf-8')
+
+def byte_to_str(value):
+    return value.decode('utf-8')
+
 def client_sender():
 
     print('started client sender')
@@ -48,7 +54,7 @@ def client_sender():
     client.connect((target, port))
 
     if len(buffer):
-        client.send(buffer.encode('utf-8'))
+        client.send(str_to_byte(buffer))
 
     print('sent the input')
 
@@ -66,12 +72,12 @@ def client_sender():
                  break
 
         print('recieved the total of %d data' % len(response))
-        print(response)
+        print(byte_to_str(response))
 
-        buffer = input('').encode('utf-8')
-        buffer+= b'\n'
+        buffer = input('')
+        buffer+= '\n'
 
-        client.send(buffer)
+        client.send(str_to_byte(buffer))
         print('sent the input')
 
 def server_loop():
