@@ -1,5 +1,4 @@
-import unittest
-from unittest.mock import MagicMock
+import unittest.mock
 import bhnetserver
 
 class BhnetServerTest(unittest.TestCase):
