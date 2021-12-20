@@ -8,7 +8,7 @@ def run_command(command):
     return subprocess.check_output(
             command, stderr=subprocess.STDOUT, shell=True)
 
-def create_socket():
+def create_server():
     return socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 def str_to_byte(value):
@@ -50,17 +50,16 @@ def args(argv):
 def client_handler(
         port,
         run_command=run_command,
-        create_socket=create_socket
+        create_server=create_server
     ):
 
     target = '0.0.0.0'
     prompt = '<BHP:#> '
 
-    server = create_socket()
+    server = create_server()
     server.bind((target, port))
 
     server.listen(5)
-    print('started listening')
 
     client_socket = server.accept()
     client_socket.send(str_to_byte(prompt))
@@ -72,7 +71,7 @@ def client_handler(
 
         buffer.rstrip()
         response = run_command(byte_to_str(buffer))
-        response+= prompt
+        response+= str_to_byte(prompt)
 
         client_socket.send(response)
 
