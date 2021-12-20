@@ -59,6 +59,8 @@ def client_handler(
 
     server.listen(5)
 
+    print('started to listen %i port' % port)
+
     client_socket = server.accept()
     client_socket.send(str_to_byte(prompt))
 
