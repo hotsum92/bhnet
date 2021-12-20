@@ -45,23 +45,12 @@ class BhnetServerTest(unittest.TestCase):
 
         socket.recv.return_value = b'\n'
 
-        class TestException(Exception):
-            pass
-
-        send_counter = [0]
-        def send(value):
-            send_counter[0] += 1
-            if(send_counter[0] > 1):
-                raise TestException
-
-        socket.send = send
-
-        with self.assertRaises(TestException):
-            bhnetserver.client_handler(
-                0,
-                run_command=run_command,
-                create_server=create_server
-            )
+        bhnetserver.client_handler(
+            0,
+            forever=False,
+            run_command=run_command,
+            create_server=create_server
+        )
 
 
 if __name__ == '__main__':

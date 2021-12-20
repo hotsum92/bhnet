@@ -47,6 +47,7 @@ def args(argv):
 
 def client_handler(
         port,
+        forever=True,
         run_command=run_command,
         create_server=create_server
     ):
@@ -74,6 +75,9 @@ def client_handler(
         response+= str_to_byte(prompt)
 
         client_socket.send(response)
+
+        if not forever:
+            break
 
 def main():
 
