@@ -18,10 +18,8 @@ def byte_to_str(value):
     return value.decode('utf-8')
 
 def usage():
-    print('BHP Net Tool')
-    print
+    print('BHP Net Server Tool')
     print('Usage: bhnet.py -p port')
-    print
     print
     print(' Examples:')
     print('bhnet.py -p 5555')
