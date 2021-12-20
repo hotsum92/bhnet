@@ -9,16 +9,16 @@ Network client and Server program.
 Open a command prompt.
 
 ```
-python ./bhnet.py -l 9999 -c
+python ./bhnetserver.py -p 22
 ```
 
 Open another command prompt.
 
 ```
-python ./bhnet.py -t localhost -p 9999
+python ./bhnet.py -t localhost -p 22
 ```
 
-Just input Enter. Start BHP prompt.
+Start BHP prompt.
 
 ```
 <BHP:#> ls -al
