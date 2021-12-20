@@ -41,7 +41,7 @@ class BhnetServerTest(unittest.TestCase):
         socket = unittest.mock.MagicMock()
 
         create_server.return_value = server
-        server.accept.return_value = socket
+        server.accept.return_value = socket, 0
 
         socket.recv.return_value = b'\n'
 

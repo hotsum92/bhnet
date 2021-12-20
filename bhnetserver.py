@@ -62,7 +62,8 @@ def client_handler(
 
     print('started to listen %i port' % port)
 
-    client_socket = server.accept()
+    client_socket, addr = server.accept()
+    print('socket connected')
     client_socket.send(str_to_byte(prompt))
 
     while True:
